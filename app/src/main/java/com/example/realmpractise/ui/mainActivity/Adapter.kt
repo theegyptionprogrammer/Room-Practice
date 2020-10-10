@@ -16,14 +16,13 @@ import kotlinx.android.synthetic.main.user.view.*
 
 class Adapter(private val context: Context) : RecyclerView.Adapter<Adapter.UserViewHolder>() {
 
-    private lateinit var userList: RealmResults<User>
+    private var userList = mutableListOf<User>()
     private var userModule = UserModule()
     private val realm: Realm = Realm.getDefaultInstance()
     private val viewHolder: ViewHolder? = null
 
     fun getAllUsers(userList: RealmResults<User>) {
         this.userList = userList
-        notifyDataSetChanged()
     }
 
     fun deleteUser(position: Int) {
@@ -41,7 +40,7 @@ class Adapter(private val context: Context) : RecyclerView.Adapter<Adapter.UserV
     override fun getItemCount(): Int = userList.size
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) =
-        holder.bind(userList[position]!!)
+        holder.bind(userList[position])
 
     class UserViewHolder(private val view: View) : ViewHolder(view) {
         fun bind(user: User) {

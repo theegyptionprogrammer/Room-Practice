@@ -32,13 +32,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //  swipeToDelete()
+        val userList = userModule.getAllUsers(realm)
+        adapter.getAllUsers(userList)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.addItemDecoration(
             DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         )
         adapter.notifyDataSetChanged()
-
         refresh_btn.setOnClickListener {
             updateRV()
         }
@@ -51,7 +52,6 @@ class MainActivity : AppCompatActivity() {
         search_btn.setOnClickListener {
             searchUser()
         }
-
         // adapter.deleteUser(viewHolder!!.adapterPosition)
     }
 
