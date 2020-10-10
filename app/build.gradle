@@ -45,4 +45,7 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+    implementation 'org.mongodb:stitch-android-sdk:4.0.5'
+    implementation 'com.google.android.gms:play-services-auth:15.0.1'
+
 }

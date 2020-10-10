@@ -14,7 +14,6 @@ import io.realm.Realm
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.user.view.*
 
-
 class Adapter(private val context: Context) : RecyclerView.Adapter<Adapter.UserViewHolder>() {
 
     private lateinit var userList: RealmResults<User>

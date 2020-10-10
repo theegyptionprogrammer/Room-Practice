@@ -2,4 +2,5 @@
     <string name="app_name">RealmPractise</string>
     <string name="search">search</string>
     <string name="select_photo">select_photo</string>
+    <string name="app_id">monogo_db_id</string>
 </resources>

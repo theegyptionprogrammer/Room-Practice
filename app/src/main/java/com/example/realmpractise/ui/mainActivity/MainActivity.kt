@@ -32,7 +32,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //  swipeToDelete()
-        updateRV()
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        )
+        adapter.notifyDataSetChanged()
+
         refresh_btn.setOnClickListener {
             updateRV()
         }
@@ -74,9 +80,6 @@ class MainActivity : AppCompatActivity() {
             val userName = searchBar.text.toString()
             val getUser = userModule.getUser(this.realm, userName)
             adapter.getAllUsers(getUser)
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager =
-                LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
             adapter.notifyDataSetChanged()
             Toast.makeText(this, "User found", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
@@ -87,11 +90,6 @@ class MainActivity : AppCompatActivity() {
     private fun updateRV() {
         val userList = userModule.getAllUsers(realm)
         adapter.getAllUsers(userList)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        )
         adapter.notifyDataSetChanged()
     }
 
@@ -103,7 +101,6 @@ class MainActivity : AppCompatActivity() {
                  userModule.deleteUser(realm, viewHolder.adapterPosition)
              }
          }
-
          val itemTouchHelper = ItemTouchHelper(swipeHandler)
          itemTouchHelper.attachToRecyclerView(recyclerView)
      }*/
