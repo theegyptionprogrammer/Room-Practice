@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.realmpractise.db.User
 import com.example.realmpractise.db.UserModule
 import com.example.realmpractise.util.NavigatorImpl
 import io.realm.Realm
@@ -82,8 +83,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpRV() {
+        val userRealmList = mutableListOf<User>()
         val userList = userModule.getAllUsers(realm)
-        adapter.getAllUsers(userList)
+        userRealmList.addAll(userList)
+        adapter.getAllUsers(userRealmList)
     }
 
 

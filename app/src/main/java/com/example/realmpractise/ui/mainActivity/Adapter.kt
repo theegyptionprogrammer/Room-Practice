@@ -9,14 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.realmpractise.R
 import com.example.realmpractise.db.User
-import io.realm.RealmResults
 import kotlinx.android.synthetic.main.user.view.*
 
 class Adapter(private val context: Context) : RecyclerView.Adapter<Adapter.UserViewHolder>() {
 
     private var userList = mutableListOf<User>()
 
-    fun getAllUsers(userList: RealmResults<User>) {
+    fun getAllUsers(userList: MutableList<User>) {
         this.userList.addAll(userList)
         notifyDataSetChanged()
     }
