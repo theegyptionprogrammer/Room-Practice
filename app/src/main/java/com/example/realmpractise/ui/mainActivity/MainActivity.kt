@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
             DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         )
 
-        setUpRV()
         refresh_btn.setOnClickListener {
             setUpRV()
         }
