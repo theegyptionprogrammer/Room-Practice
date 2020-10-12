@@ -9,25 +9,20 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.realmpractise.R
 import com.example.realmpractise.db.User
-import com.example.realmpractise.db.UserModule
-import io.realm.Realm
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.user.view.*
 
 class Adapter(private val context: Context) : RecyclerView.Adapter<Adapter.UserViewHolder>() {
 
     private var userList = mutableListOf<User>()
-    private var userModule = UserModule()
-    private val realm: Realm = Realm.getDefaultInstance()
-    private val viewHolder: ViewHolder? = null
 
     fun getAllUsers(userList: RealmResults<User>) {
-        this.userList = userList
+        this.userList.addAll(userList)
+        notifyDataSetChanged()
     }
 
     fun deleteUser(position: Int) {
         userList.removeAt(position)
-        userModule.deleteUser(realm, viewHolder!!.position)
         notifyItemRemoved(position)
     }
 

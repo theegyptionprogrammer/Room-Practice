@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.realmpractise.R
 import com.example.realmpractise.db.UserModule
 import com.example.realmpractise.util.NavigatorImpl
 import io.realm.Realm
@@ -27,21 +26,18 @@ class MainActivity : AppCompatActivity() {
     private var speech: SpeechRecognizer? = null
     private lateinit var recognizerIntent: Intent
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        //  swipeToDelete()
-        val userList = userModule.getAllUsers(realm)
-        adapter.getAllUsers(userList)
-        recyclerView.adapter = adapter
+
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        recyclerView.adapter = adapter
         recyclerView.addItemDecoration(
             DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         )
-        adapter.notifyDataSetChanged()
+
+        setUpRV()
         refresh_btn.setOnClickListener {
-            updateRV()
+            setUpRV()
         }
         add_btn.setOnClickListener {
             navigator.openUserActivity()
@@ -52,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         search_btn.setOnClickListener {
             searchUser()
         }
-        // adapter.deleteUser(viewHolder!!.adapterPosition)
     }
 
     private fun getSpeechInput() {
@@ -87,11 +82,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateRV() {
+    private fun setUpRV() {
         val userList = userModule.getAllUsers(realm)
         adapter.getAllUsers(userList)
-        adapter.notifyDataSetChanged()
     }
+
 
     /* private fun swipeToDelete(){
          val swipeHandler = object : SwipeToDeleteCallback(this) {
@@ -134,6 +129,8 @@ class MainActivity : AppCompatActivity() {
                 searchBar.setText(result[0])
                 searchUser()
             }
+        } else {
+            setUpRV()
         }
     }
 }

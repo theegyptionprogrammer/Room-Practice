@@ -35,6 +35,6 @@ class UserModule : UserRepository {
 
 
     override fun getAllUsers(realm: Realm): RealmResults<User> =
-        realm.where<User>(User::class.java).findAll()
+        realm.where(User::class.java).findAll()
 
 }
